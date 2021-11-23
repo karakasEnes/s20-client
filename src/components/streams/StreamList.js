@@ -16,10 +16,22 @@ class StreamList extends React.Component {
             {stream.title}
             <div className="">{stream.description}</div>
           </div>
+          {this.renderAdmin(stream)}
         </div>
       );
     });
   };
+
+  renderAdmin(stream) {
+    if (stream.userId === this.props.currentUserId) {
+      return (
+        <div className="right floated content">
+          <button className="ui button primary">Edit</button>
+          <button className="ui button negative">Delete</button>
+        </div>
+      );
+    }
+  }
 
   render() {
     return (
@@ -32,7 +44,10 @@ class StreamList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { streams: Object.values(state.streams) };
+  return {
+    streams: Object.values(state.streams),
+    currentUserId: state.auth.userId,
+  };
 };
 
 export default connect(mapStateToProps, { fetchStreams })(StreamList);
