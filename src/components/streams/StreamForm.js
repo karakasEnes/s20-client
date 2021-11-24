@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-class StreamCreate extends React.Component {
+class StreamForm extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -62,4 +62,4 @@ const validate = (formValues) => {
 export default reduxForm({
   form: 'streamForm',
   validate,
-})(StreamCreate);
+})(StreamForm);
